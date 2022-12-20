@@ -1,0 +1,204 @@
+USE test_DB
+GO
+CREATE PROCEDURE showTable AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+
+USE test_DB
+GO
+CREATE PROCEDURE orderByName AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+ORDER BY 'Фамилия'
+
+USE test_DB
+GO
+CREATE PROCEDURE orderByDateEmploy AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+ORDER BY 'Дата приема на работу'
+
+USE test_DB
+GO
+CREATE PROCEDURE orderByDateUneploy AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+ORDER BY 'Дата увольнения'
+
+USE test_DB
+GO
+CREATE PROCEDURE orderByStatus AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+ORDER BY 'Статус'
+
+USE test_DB
+GO
+CREATE PROCEDURE orderByDepartment AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+ORDER BY 'Отдел'
+
+USE test_DB
+GO
+CREATE PROCEDURE orderByPost AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+ORDER BY 'Должность'
+
+USE test_DB
+GO
+CREATE PROCEDURE filtrationByStatus
+	@id INT
+AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+WHERE status.id = @id
+
+USE test_DB
+GO
+CREATE PROCEDURE filtrationByDepartment
+	@id INT
+AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+WHERE deps.id = @id
+
+USE test_DB
+GO
+CREATE PROCEDURE filtrationByPost
+	@id INT
+AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+WHERE posts.id = @id
+
+USE test_DB
+GO
+CREATE PROCEDURE filtrationByLastName
+	@subStringName NVARCHAR(20)
+AS
+SELECT persons.id AS 'ID',
+		persons.last_name AS 'Фамилия',
+		persons.first_name AS 'Имя',
+		persons.second_name AS 'Отчество',
+		persons.date_employ AS 'Дата приема на работу',
+		persons.date_uneploy AS 'Дата увольнения',
+		status.name AS 'Статус',
+		deps.name AS 'Отдел',
+		posts. name AS 'Должность'
+FROM persons
+JOIN  status ON  persons.status = status.id
+JOIN  deps ON  persons.id_dep = deps.id
+JOIN  posts ON  persons.id_post = posts.id
+WHERE CHARINDEX(@subStringName, persons.last_name) != 0
